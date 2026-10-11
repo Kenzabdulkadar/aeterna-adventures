@@ -11,27 +11,27 @@ export default function DestinationCard({ pkg, onSelect }) {
     >
       
       {/* Image Container with Zoom Effect */}
-      <div className="relative h-64 sm:h-72 overflow-hidden bg-black">
+      <div className="relative h-72 sm:h-80 overflow-hidden bg-neutral-900">
         <img
           src={pkg.image}
           alt={pkg.title}
-          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
         />
 
         {/* Top Badges */}
-        <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-10">
-          <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-bold border border-white/20 flex items-center gap-1">
-            <MapPin className="w-3 h-3 text-[#D4A373]" />
+        <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-10 pointer-events-none">
+          <span className="px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-bold border border-white/20 flex items-center gap-1.5 shadow-md">
+            <MapPin className="w-3.5 h-3.5 text-[#D4A373]" />
             {pkg.location}
           </span>
-          <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#2B231F] text-xs font-extrabold flex items-center gap-1 shadow-md">
+          <span className="px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#2B231F] text-xs font-extrabold flex items-center gap-1 shadow-md">
             <Star className="w-3.5 h-3.5 fill-[#D4A373] text-[#D4A373]" />
             {pkg.rating}
           </span>
         </div>
 
-        {/* Dark Hover Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 transition-opacity duration-300" />
+        {/* Soft Vignette Overlay for maximum photo clarity */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       </div>
 
       {/* Card Content Body */}

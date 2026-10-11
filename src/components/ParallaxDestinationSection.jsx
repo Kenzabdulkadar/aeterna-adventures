@@ -23,10 +23,10 @@ export default function ParallaxDestinationSection({ destination, onSelectPackag
       className="relative w-full min-h-screen py-24 px-4 sm:px-6 lg:px-8 overflow-hidden select-none bg-[#0D0B09] border-t border-white/10"
     >
 
-      {/* 1. Background Image with Slow 3D Parallax Movement */}
+      {/* 1. Background Image with Slow 3D Parallax Movement (GPU-Accelerated) */}
       <motion.div 
         style={{ y: bgY }}
-        className="absolute inset-0 z-0 origin-center"
+        className="absolute inset-0 z-0 origin-center will-change-transform transform-gpu"
       >
         <img
           src={destination.bgImage}

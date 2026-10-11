@@ -1,34 +1,35 @@
 export const TRIPS = [
   {
     id: 'vattavada-kerala',
-    title: 'Vattavada Organic Valley Retreat',
-    location: 'Vattavada, Idukki, Kerala, India',
+    title: 'Roots Camping (Vattavada, Munnar)',
+    location: 'Kottakamboor, Vattavada, Munnar, Kerala',
     region: 'Kerala',
-    category: 'Travel Package',
-    activity: 'Trekking',
+    category: 'Holiday Home & Camping',
+    activity: 'Camping & Trekking',
     price: 14999,
     slotsLeft: 6,
     type: 'Open Trip',
     dateRange: '15-18 September',
-    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80',
+    image: '/hero/roots-camping-vattavada.jpg',
     images: [
+      '/hero/roots-camping-vattavada.jpg',
       'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80',
       '/hero/bg-6.jpg'
     ],
-    rating: 4.98,
-    reviewsCount: 86,
+    rating: 5.0,
+    reviewsCount: 5,
     inclusions: [
-      { icon: 'Bed', text: 'Eco Farmstay Cottage' },
-      { icon: 'Car', text: '4x4 Offroad Transfers' },
-      { icon: 'Utensils', text: 'Fresh Farm Organic Meals' },
-      { icon: 'Compass', text: 'Native Spice & Forest Guide' }
+      { icon: 'Bed', text: 'Roots Hillside Tent Stay' },
+      { icon: 'Car', text: '4x4 Offroad Mountain Transfers' },
+      { icon: 'Utensils', text: 'Campfire Dinner & Farm Breakfast' },
+      { icon: 'Compass', text: 'Village & Mountain Forest Guide' }
     ],
-    description: 'Tucked beyond Munnar lies Vattavada — Kerala’s organic vegetable village. Experience misty terraced farms, fragrant eucalyptus forest walks, strawberry picking, and tranquility far off the beaten track.',
+    description: 'Mountain and village camping experience in the picturesque Vattavada region near Munnar, located at Kottakamboor. Perched high above the clouds with panoramic ridge views, illuminated pathway tents, warm campfires, and serene terraced hillsides.',
     itinerary: [
-      { day: 'Day 1', title: 'Arrival & Eucalyptus Forest Trail', desc: 'Transfer from Munnar to Vattavada valley, welcome herbal tea, sunset ridge walk.' },
-      { day: 'Day 2', title: 'Organic Farm Harvest & Strawberry Trails', desc: 'Morning walk through garlic and strawberry terraces, traditional Kerala farm lunch.' },
-      { day: 'Day 3', title: 'Kurinjimala Sanctuary Trek', desc: 'Hike through shola forests and mountain streams, campfire stargazing.' }
+      { day: 'Day 1', title: 'Arrival at Roots Camping & Sunset Campfire', desc: 'Check into hillside tents at Kottakamboor, welcome tea, evening campfire and music overlooking the lit valley.' },
+      { day: 'Day 2', title: 'Vattavada Village Trek & Organic Terraces', desc: 'Guided village exploration through garlic and strawberry terraces, traditional Kerala local lunch.' },
+      { day: 'Day 3', title: 'Kurinjimala Sanctuary Trail & Departure', desc: 'Early sunrise viewpoint trek through shola forest trails, breakfast and departure transfer to Munnar.' }
     ]
   },
   {
@@ -416,12 +417,12 @@ export const WORLD_DESTINATIONS = [
     packages: [
       {
         id: 'pkg-vattavada',
-        title: 'Vattavada Organic Valley Retreat',
-        location: 'Kerala, India',
+        title: 'Roots Camping (Vattavada, Munnar)',
+        location: 'Kottakamboor, Vattavada, Kerala',
         price: '₹14,999',
-        rating: '4.98',
-        image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80',
-        desc: 'Misty terraced organic farmstay, strawberry picking, and offroad 4x4 Jeep safari.'
+        rating: '5.0',
+        image: '/hero/roots-camping-vattavada.jpg',
+        desc: 'Mountain & village camping at Kottakamboor, Vattavada with illuminated night tents and campfire.'
       },
       {
         id: 'pkg-munnar',

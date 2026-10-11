@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Compass, ArrowDown, Globe, Calendar } from 'lucide-react';
+import { Compass, ArrowDown, Calendar } from 'lucide-react';
 
 const HERO_SLIDES = [
   {
@@ -25,11 +25,10 @@ export default function TravelHero({ onExploreClick, onBookClick }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { scrollY } = useScroll();
 
-  // Scroll Parallax transformations
-  const yBg = useTransform(scrollY, [0, 800], [0, 250]);
-  const scaleBg = useTransform(scrollY, [0, 800], [1.15, 1.0]);
-  const opacityHero = useTransform(scrollY, [0, 600], [1, 0.2]);
-  const textY = useTransform(scrollY, [0, 600], [0, 100]);
+    // Lightweight, GPU-accelerated Parallax scroll transformations
+  const yBg = useTransform(scrollY, [0, 800], [0, 180]);
+  const opacityHero = useTransform(scrollY, [0, 500], [1, 0.15]);
+  const textY = useTransform(scrollY, [0, 500], [0, 60]);
 
   // Auto-advance slideshow every 6 seconds
   const nextSlide = useCallback(() => {
@@ -41,27 +40,13 @@ export default function TravelHero({ onExploreClick, onBookClick }) {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  // Floating atmospheric cloud animation variants
-  const cloudVariants = {
-    animate1: {
-      x: [0, 40, 0],
-      y: [0, -15, 0],
-      transition: { duration: 18, repeat: Infinity, ease: 'easeInOut' }
-    },
-    animate2: {
-      x: [0, -50, 0],
-      y: [0, 20, 0],
-      transition: { duration: 22, repeat: Infinity, ease: 'easeInOut' }
-    }
-  };
-
   return (
     <section id="hero-section" className="relative w-full h-screen flex items-center justify-center overflow-hidden select-none bg-[#090807]">
       
-      {/* 1. Full Viewport Parallax Background Slideshow */}
+      {/* 1. Full Viewport Parallax Background Slideshow (GPU Accelerated) */}
       <motion.div 
-        style={{ y: yBg, scale: scaleBg }}
-        className="absolute inset-0 z-0 origin-center"
+        style={{ y: yBg }}
+        className="absolute inset-0 z-0 origin-center will-change-transform transform-gpu scale-105"
       >
         {/* Crossfade Slideshow Images */}
         <AnimatePresence mode="sync">
@@ -69,51 +54,30 @@ export default function TravelHero({ onExploreClick, onBookClick }) {
             key={currentSlide}
             src={HERO_SLIDES[currentSlide].src}
             alt={HERO_SLIDES[currentSlide].alt}
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ opacity: { duration: 1.5, ease: 'easeInOut' }, scale: { duration: 6, ease: 'easeOut' } }}
-            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[1.04] contrast-[1.08] saturate-[1.1]"
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            className="absolute inset-0 w-full h-full object-cover object-center will-change-opacity"
           />
         </AnimatePresence>
 
-        {/* Dark Cinematic Gradient Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090807] via-[#090807]/40 to-[#090807]/70 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#090807]/70 via-transparent to-[#090807]/70 z-10" />
-        <div className="absolute inset-0 bg-black/15 mix-blend-multiply z-10" />
+        {/* Dark Cinematic Gradient Vignette Overlay (Pre-rendered for zero paint cost) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090807] via-[#090807]/40 to-[#090807]/70 z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#090807]/70 via-transparent to-[#090807]/70 z-10 pointer-events-none" />
       </motion.div>
 
-      {/* 2. Floating Atmospheric Clouds / Soft Particles */}
-      <div className="absolute inset-0 z-[11] pointer-events-none overflow-hidden opacity-35">
-        {/* Cloud 1 */}
-        <motion.div 
-          variants={cloudVariants}
-          animate="animate1"
-          className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-white/10 blur-3xl"
-        />
-        {/* Cloud 2 */}
-        <motion.div 
-          variants={cloudVariants}
-          animate="animate2"
-          className="absolute bottom-1/3 -right-20 w-[500px] h-[500px] rounded-full bg-amber-500/10 blur-3xl"
-        />
+      {/* 2. Soft Ambient Vignette Lighting (Lightweight radial gradients without heavy blur filters) */}
+      <div className="absolute inset-0 z-[11] pointer-events-none overflow-hidden opacity-30">
+        <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-[radial-gradient(circle,_rgba(255,255,255,0.15)_0%,_transparent_70%)]" />
+        <div className="absolute bottom-1/3 -right-20 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_rgba(212,163,115,0.18)_0%,_transparent_70%)]" />
       </div>
 
       {/* 3. Hero Content Container */}
       <motion.div 
         style={{ opacity: opacityHero, y: textY }}
-        className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto"
+        className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto will-change-transform transform-gpu"
       >
-        {/* Top Badge */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-extrabold uppercase tracking-widest mb-6 shadow-xl"
-        >
-          <Globe className="w-4 h-4 text-[#D4A373]" />
-          <span>Curated Indian Expeditions 🇮🇳</span>
-        </motion.div>
 
         {/* Main Headline */}
         <motion.h1 

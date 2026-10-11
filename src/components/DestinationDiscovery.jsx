@@ -262,23 +262,26 @@ export default function DestinationDiscovery({
 
                     {/* Bottom Image Details Overlay */}
                     <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <div className="flex items-center justify-between mb-1">
-                        <h3 className="font-heading font-bold text-xl drop-shadow-sm group-hover:text-[#D4A373] transition-colors line-clamp-1">
+                      <div className="flex items-end justify-between gap-2 mb-1.5">
+                        <h3 className="font-heading font-extrabold text-lg sm:text-xl drop-shadow-md text-white line-clamp-1">
                           {trip.title}
                         </h3>
-                        <span className="text-lg font-extrabold text-white shrink-0 ml-2">
-                          ₹{trip.price.toLocaleString('en-IN')}
-                        </span>
+                        <div className="text-right shrink-0">
+                          <span className="text-[10px] uppercase text-white/70 block font-semibold leading-tight">From</span>
+                          <span className="text-lg sm:text-xl font-extrabold text-[#D4A373] drop-shadow-md">
+                            ₹{trip.price.toLocaleString('en-IN')}
+                          </span>
+                        </div>
                       </div>
 
-                      <div className="flex items-center justify-between text-xs text-white/85">
-                        <div className="flex items-center gap-1 truncate max-w-[55%]">
+                      <div className="flex items-center justify-between text-xs text-white/90">
+                        <div className="flex items-center gap-1.5 truncate max-w-[60%]">
                           <MapPin className="w-3.5 h-3.5 text-[#D4A373] shrink-0" />
-                          <span className="truncate">{trip.location}</span>
+                          <span className="truncate font-medium">{trip.location}</span>
                         </div>
-                        <div className="flex items-center gap-1 shrink-0">
+                        <div className="flex items-center gap-1.5 shrink-0">
                           <Calendar className="w-3.5 h-3.5 text-[#D4A373]" />
-                          <span>{trip.dateRange}</span>
+                          <span className="font-medium">{trip.dateRange}</span>
                         </div>
                       </div>
                     </div>
@@ -299,14 +302,14 @@ export default function DestinationDiscovery({
                             className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F9F8F6] border border-[#2B231F]/10 text-[11px] font-semibold text-[#2B231F]"
                           >
                             {renderInclusionIcon(inc.icon)}
-                            <span>{inc.text}</span>
+                            <span className="truncate max-w-[160px]">{inc.text}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    {/* Dual Action Buttons: "Book via WhatsApp" + "Details" */}
-                    <div className="pt-3 border-t border-[#2B231F]/10 space-y-2">
+                    {/* Dual Action Buttons: "Book via WhatsApp" + "View Full Itinerary & Rooms" */}
+                    <div className="pt-3 border-t border-[#2B231F]/10 space-y-2.5">
                       
                       {/* 1. Direct "Book via WhatsApp" Button on Listing Card */}
                       <WhatsAppButton
@@ -323,24 +326,15 @@ export default function DestinationDiscovery({
                         title={`Book ${trip.title} directly via WhatsApp`}
                       />
 
-                      {/* 2. Secondary Link: View Full Itinerary */}
-                      <div className="flex items-center justify-between pt-1">
-                        <button
-                          onClick={() => onSelectTrip(trip)}
-                          className="flex items-center gap-1.5 text-xs font-bold text-[#2B231F] hover:text-[#D4A373] transition-colors"
-                        >
-                          <Maximize2 className="w-3.5 h-3.5" />
-                          <span>View Full Itinerary & Rooms</span>
-                        </button>
-
-                        <button
-                          onClick={() => onSelectTrip(trip)}
-                          className="w-7 h-7 rounded-full bg-[#1E1E1E] text-white flex items-center justify-center group-hover:bg-[#D4A373] group-hover:text-[#1E1E1E] transition-colors"
-                          aria-label="View Itinerary"
-                        >
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                      {/* 2. Primary Link: View Full Itinerary */}
+                      <button
+                        onClick={() => onSelectTrip(trip)}
+                        className="w-full py-2.5 px-4 rounded-full bg-[#F5F3EF] hover:bg-[#EAE6DF] border border-[#2B231F]/15 text-[#2B231F] hover:text-[#1E1E1E] transition-all flex items-center justify-center gap-2 text-xs font-bold font-heading group cursor-pointer shadow-xs"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5 text-[#D4A373] group-hover:scale-110 transition-transform" />
+                        <span>View Full Itinerary & Room Details</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-[#2B231F]/60 group-hover:translate-x-0.5 transition-transform ml-auto" />
+                      </button>
 
                     </div>
 

@@ -41,22 +41,26 @@ export default function App() {
     setTimeout(() => setToastMessage(null), 3500);
   };
 
-  // Track active destination on scroll
+  // Track active destination with high-performance IntersectionObserver (no scroll lag)
   useEffect(() => {
-    const handleScroll = () => {
-      WORLD_DESTINATIONS.forEach((dest) => {
-        const el = document.getElementById(`dest-${dest.id}`);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.2) {
-            setActiveDestinationId(dest.id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id.replace('dest-', '');
+            setActiveDestinationId(id);
           }
-        }
-      });
-    };
+        });
+      },
+      { rootMargin: '-20% 0px -40% 0px', threshold: 0.1 }
+    );
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    WORLD_DESTINATIONS.forEach((dest) => {
+      const el = document.getElementById(`dest-${dest.id}`);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const handleSelectTrip = (tripIdOrObj) => {

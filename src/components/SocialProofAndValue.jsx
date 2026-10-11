@@ -58,14 +58,8 @@ export default function SocialProofAndValue({ onBookSeatClick }) {
             Curated Journeys Crafted for Unforgettable Memories
           </h3>
 
-          {/* Paragraph 1 */}
           <p className="text-base text-[#6E6660] font-normal leading-relaxed">
-            At <strong>Aeterna.Adventures</strong>, we believe every journey should be exciting, comfortable, and unforgettable. Our mission is to help travelers discover the best destinations through carefully curated tour packages from kerala, affordable holiday deals, and customized travel experiences.
-          </p>
-
-          {/* Paragraph 2 */}
-          <p className="text-base text-[#6E6660] font-normal leading-relaxed">
-            Whether you’re planning a family vacation, weekend getaway, honeymoon trip, or international holiday, our team ensures every detail of your journey is perfectly arranged. With a focus on quality service, reliable travel planning, and competitive pricing, we make travel simple and enjoyable for everyone.
+            At <strong>Aeterna.Adventures</strong>, we craft exciting, comfortable, and unforgettable journeys — from curated Kerala packages and weekend getaways to custom family and honeymoon holidays with reliable planning and competitive pricing.
           </p>
 
           {/* Key Feature Badges */}
